@@ -6,6 +6,7 @@ public class PressAndHold : MonoBehaviour
 {
     [SerializeField] float SpriteChangeTimer;
     [SerializeField] List<Sprite> Sprites;
+    [SerializeField] List<GameObject> EndOfInteractionObjects;
 
     SpriteRenderer SpriteRend;
 
@@ -18,10 +19,9 @@ public class PressAndHold : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(RoundToOneDP(0.25f));   
-        timer = 0;
         totalTime = SpriteChangeTimer * Sprites.Count;
         SpriteRend = this.GetComponent<SpriteRenderer>();
+        NotInteracting();
     }
 
     // Update is called once per frame
@@ -31,8 +31,19 @@ public class PressAndHold : MonoBehaviour
         {
             if(RoundToOneDP(timer) % SpriteChangeTimer == 0)
             {
-                if(timer < totalTime)
+                if (timer < totalTime)
+                {
                     SpriteRend.sprite = Sprites[(int)(timer / SpriteChangeTimer)];
+
+                    if ((int)(timer / SpriteChangeTimer) == Sprites.Count - 1)
+                    {
+                        foreach (GameObject g in EndOfInteractionObjects)
+                        {
+                            g.SetActive(true);
+                        }
+                    }
+                }
+
             }
 
             timer += Time.deltaTime;
@@ -67,5 +78,9 @@ public class PressAndHold : MonoBehaviour
         isHolding = false;
         timer = 0f;
         SpriteRend.sprite = Sprites[0];
+        foreach (GameObject g in EndOfInteractionObjects)
+        {
+            g.SetActive(false);
+        }
     }
 }
