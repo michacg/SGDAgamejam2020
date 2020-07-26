@@ -41,11 +41,14 @@ public class PressAndHold : MonoBehaviour
                         {
                             g.SetActive(true);
                         }
+
                     }
                 }
-
+                else
+                {
+                    TempGameManager.instance.NextPanel();
+                }
             }
-
             timer += Time.deltaTime;
 
         }
