@@ -11,7 +11,8 @@ public class Play : MonoBehaviour
     [SerializeField] GameObject fadeInObj;
     [SerializeField] GameObject button;
     [SerializeField] GameObject food;
-    [SerializeField] GameObject ui;
+    [SerializeField] GameObject uiPanel;
+    [SerializeField] GameObject uiButton;
 
     public void StartChapter()
     {
@@ -19,6 +20,7 @@ public class Play : MonoBehaviour
 
         StartCoroutine(Fade(true));
         StartCoroutine(Fade(false));
+        uiButton.SetActive(false);
     }
 
     private IEnumerator TurnOnVendingMachine()
@@ -46,8 +48,8 @@ public class Play : MonoBehaviour
         {
             for (float i = 1; i >= 0; i -= Time.deltaTime)
             {
-                ui.GetComponent<Image>().color = new Color(1, 1, 1, i);
-                ui.SetActive(false);
+                uiButton.GetComponent<Image>().color = new Color(1, 1, 1, i);
+                uiPanel.GetComponent<Image>().color = new Color(1, 1, 1, i);
                 yield return null;
             }
         }
