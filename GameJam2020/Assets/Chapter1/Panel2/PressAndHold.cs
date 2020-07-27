@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressAndHold : MonoBehaviour
+public class PressAndHold : MonoBehaviour, Panel
 {
+    [SerializeField] GameObject SpriteToChange;
     [SerializeField] float SpriteChangeTimer;
     [SerializeField] List<Sprite> Sprites;
     [SerializeField] List<GameObject> EndOfInteractionObjects;
@@ -14,20 +15,20 @@ public class PressAndHold : MonoBehaviour
     float timer;
 
     bool isHolding = false;
-    bool finished = false;
+    bool OnPanel = false;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         totalTime = SpriteChangeTimer * Sprites.Count;
-        SpriteRend = this.GetComponent<SpriteRenderer>();
+        SpriteRend = SpriteToChange.GetComponent<SpriteRenderer>();
         NotInteracting();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isHolding && !finished)
+        if(isHolding && OnPanel)
         {
             if(RoundToOneDP(timer) % SpriteChangeTimer == 0)
             {
@@ -46,7 +47,7 @@ public class PressAndHold : MonoBehaviour
                 }
                 else
                 {
-                    finished = true;
+                    OnPanel = false;
                     ChapterManager.instance.NextPanel();
                 }
             }
@@ -86,5 +87,11 @@ public class PressAndHold : MonoBehaviour
         {
             g.SetActive(false);
         }
+    }
+
+    public void Activate()
+    {
+        Debug.Log("Activated");
+        OnPanel = true;
     }
 }

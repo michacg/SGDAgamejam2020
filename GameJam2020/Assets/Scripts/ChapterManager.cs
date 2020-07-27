@@ -16,17 +16,24 @@ public class ChapterManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        CameraMovement.FinishedMoving += ActivateNextPanel;
     }
 
     void Start()
     {
         cam = Camera.main.gameObject.GetComponent<CameraMovement>();
-        Panels[index].SetActive(true);
+        cam.InitialFrame(Panels[index].transform.position);
     }
 
     public void NextPanel()
     {
         cam.MoveCameraToNextPanel(Panels[++index].transform.position);
+    }
+
+    void ActivateNextPanel()
+    {
+        Debug.Log("Activating");
+        Panels[index].GetComponent<Panel>().Activate();
     }
 
 }

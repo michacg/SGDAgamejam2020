@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressToMove : MonoBehaviour
+public class PressToMove : MonoBehaviour, Panel
 {
     [SerializeField] GameObject MainCharacter;
     [SerializeField] List<GameObject> EndOfInteractionObjects;
@@ -11,6 +11,7 @@ public class PressToMove : MonoBehaviour
 
     bool isHolding = false;
     bool StopWalking = false;
+    bool OnPanel;
 
     float OrigX;
     float OrigY;
@@ -18,18 +19,17 @@ public class PressToMove : MonoBehaviour
     float yDir = 1;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         HideAllEndObjects();
         OrigY = MainCharacter.transform.position.y;
         OrigX = MainCharacter.transform.position.x;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isHolding && !StopWalking)
+        if(isHolding && !StopWalking && OnPanel)
         {
             if(MainCharacter.transform.position.x  - OrigX < xDistance)
             {
@@ -40,12 +40,12 @@ public class PressToMove : MonoBehaviour
                     yDir = -1 * yDir;
                 }
 
-                MainCharacter.transform.Translate(Vector2.up * Time.deltaTime * (MaxYIncrease + OrigY) * yDir / 2);
+                MainCharacter.transform.Translate(Vector2.up * Time.deltaTime * yDir);
             }
             else
             {
                 StopWalking = true;
-                foreach(GameObject g in EndOfInteractionObjects)
+                foreach (GameObject g in EndOfInteractionObjects)
                 {
                     g.SetActive(true);
                 }
@@ -70,5 +70,10 @@ public class PressToMove : MonoBehaviour
         {
             g.SetActive(false);
         }
+    }
+
+    public void Activate()
+    {
+        OnPanel = true;
     }
 }

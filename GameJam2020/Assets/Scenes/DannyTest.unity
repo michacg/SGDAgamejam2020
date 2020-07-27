@@ -199,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454346870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.67, y: 0, z: -0.49896687}
+  m_LocalPosition: {x: 74.79, y: 0, z: -0.49896687}
   m_LocalScale: {x: 1.48, y: 1.44, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -263,7 +263,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCharacter: {fileID: 825067451}
   EndOfInteractionObjects:
-  - {fileID: 1917788811}
   - {fileID: 796328247}
   xDistance: 15
   MaxYIncrease: 0.5
@@ -275,7 +274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673567109}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.56, y: 0, z: 0}
+  m_LocalPosition: {x: -63.1, y: -54.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1292472300}
@@ -381,7 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9109ee5677a1d4bb7d0fd2ac16692b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraMoveSpeed: 15
+  CameraMoveSpeed: 3
+  timeBetweenPanels: 10
 --- !u!1 &796328247
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 796328250}
   - component: {fileID: 796328249}
   - component: {fileID: 796328248}
+  - component: {fileID: 796328252}
   m_Layer: 0
   m_Name: Popup
   m_TagString: Untagged
@@ -478,7 +479,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 16e828b321892af4ebb44c85f2efc395, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -504,6 +505,19 @@ Transform:
   m_Father: {fileID: 673567112}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &796328252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796328247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491397ba634121441961ea71379577a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FadeSpeed: 1
 --- !u!1 &825067451
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,61 +610,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1225721660}
   - component: {fileID: 1225721659}
-  - component: {fileID: 1225721658}
-  - component: {fileID: 1225721657}
   m_Layer: 0
-  m_Name: PressAndHold
+  m_Name: Cup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1225721657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225721656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41bd4374a8d0a743b114a5d74e377be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpriteChangeTimer: 0.5
-  Sprites:
-  - {fileID: 21300000, guid: 195b7b44b63356c4d853316fe2be2b4a, type: 3}
-  - {fileID: 21300000, guid: db8831c6eec7c9247b2d68db5b95c492, type: 3}
-  - {fileID: 21300000, guid: 19ccde403c5d5104a89b97195738b628, type: 3}
-  - {fileID: 21300000, guid: deacec099446ceb4089b0cd10ce8d9d9, type: 3}
-  EndOfInteractionObjects:
-  - {fileID: 1660991740}
---- !u!61 &1225721658
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225721656}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.67}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.1, y: 6.81}
-    newSize: {x: 12.1, y: 6.81}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5}
-  m_EdgeRadius: 0
 --- !u!212 &1225721659
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1026,7 +992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1917788812
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1101,6 +1067,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2073967282}
+  - component: {fileID: 2073967283}
+  - component: {fileID: 2073967284}
   m_Layer: 0
   m_Name: Panel2
   m_TagString: Untagged
@@ -1124,3 +1092,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2073967283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073967281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41bd4374a8d0a743b114a5d74e377be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpriteToChange: {fileID: 1225721656}
+  SpriteChangeTimer: 0.5
+  Sprites:
+  - {fileID: 21300000, guid: 195b7b44b63356c4d853316fe2be2b4a, type: 3}
+  - {fileID: 21300000, guid: db8831c6eec7c9247b2d68db5b95c492, type: 3}
+  - {fileID: 21300000, guid: 19ccde403c5d5104a89b97195738b628, type: 3}
+  - {fileID: 21300000, guid: deacec099446ceb4089b0cd10ce8d9d9, type: 3}
+  EndOfInteractionObjects:
+  - {fileID: 1660991740}
+--- !u!61 &2073967284
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073967281}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.67}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 12.1, y: 6.81}
+    newSize: {x: 12.1, y: 6.81}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5}
+  m_EdgeRadius: 0
