@@ -10,11 +10,25 @@ public class Play : MonoBehaviour
 
     [SerializeField] GameObject fadeInObj;
     [SerializeField] GameObject button;
+    [SerializeField] GameObject food;
+    [SerializeField] GameObject ui;
 
     public void StartChapter()
     {
+        StartCoroutine(TurnOnVendingMachine());
+
         StartCoroutine(Fade(true));
         StartCoroutine(Fade(false));
+    }
+
+    private IEnumerator TurnOnVendingMachine()
+    {
+        for (float i = 0; i <= 1; i += Time.deltaTime)
+        {
+            button.GetComponent<SpriteRenderer>().color = new Color(i * 255f, i * 255f, i * 255f, 1);
+            food.GetComponent<SpriteRenderer>().color = new Color(i * 255f, i * 255f, i * 255f, 1);
+            yield return null;
+        }
     }
 
     private IEnumerator Fade(bool fadeIn)
@@ -32,8 +46,8 @@ public class Play : MonoBehaviour
         {
             for (float i = 1; i >= 0; i -= Time.deltaTime)
             {
-                button.GetComponent<Image>().color = new Color(1, 1, 1, i);
-                button.SetActive(false);
+                ui.GetComponent<Image>().color = new Color(1, 1, 1, i);
+                ui.SetActive(false);
                 yield return null;
             }
         }
