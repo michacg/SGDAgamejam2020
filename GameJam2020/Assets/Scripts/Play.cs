@@ -8,11 +8,12 @@ using TMPro;
 public class Play : MonoBehaviour
 {
 
-    [SerializeField] GameObject fadeInObj;
-    [SerializeField] GameObject button;
-    [SerializeField] GameObject food;
-    [SerializeField] GameObject uiPanel;
-    [SerializeField] GameObject uiButton;
+    [SerializeField] private GameObject mcBody;
+    [SerializeField] private GameObject mcHand;
+    [SerializeField] private GameObject button;
+    [SerializeField] private GameObject food;
+    [SerializeField] private GameObject uiPanel;
+    [SerializeField] private GameObject uiButton;
 
     public void StartChapter()
     {
@@ -40,7 +41,8 @@ public class Play : MonoBehaviour
         {
             for (float i = 0; i <= 0.48; i += Time.deltaTime)
             {
-                fadeInObj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, i);
+                mcBody.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, i);
+                mcHand.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, i);
                 yield return null;
             }
         }
