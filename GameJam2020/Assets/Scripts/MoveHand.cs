@@ -4,32 +4,21 @@ using UnityEngine;
 
 public class MoveHand : MonoBehaviour
 {
-    [SerializeField] private float handSpeed = 2f;
+
     [SerializeField] private float maxZ = 34.949f;
     [SerializeField] private float minZ = -15.405f;
-    [SerializeField] private float rotZ;
-    
-
-    private void Awake()
-    {
-        rotZ = transform.rotation.z;
-    }
 
     void Update()
     {
-        if (Input.GetAxis("Mouse X") == 0)
-            transform.Rotate(new Vector3(0, 0, rotZ) * Time.deltaTime * 0);
+        Vector3 mouse_pos = Input.mousePosition;
+        mouse_pos.z = 1f; //The distance between the camera and object
+        Vector3 object_pos = Camera.main.WorldToScreenPoint(transform.position);
+        // mouse_pos.x = mouse_pos.x - object_pos.x;
+        mouse_pos.y = mouse_pos.y - object_pos.y;
+        float angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
 
-        else
-        {
-            rotZ -= Input.GetAxis("Mouse X");
-            rotZ %= 360f;
-
-            if (rotZ > maxZ) { rotZ = maxZ; }
-            if (rotZ < minZ) { rotZ = minZ; }
-
-            transform.Rotate(new Vector3(0, 0, rotZ) * Time.deltaTime * handSpeed);
-        }
-
+        if (angle > minZ && angle < maxZ)
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+         
     }
 }
