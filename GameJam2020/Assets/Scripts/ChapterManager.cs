@@ -32,7 +32,6 @@ public class ChapterManager : MonoBehaviour
 
     void ActivateNextPanel()
     {
-        Debug.Log("Activating");
         Panels[index].GetComponent<Panel>().Activate();
     }
 
