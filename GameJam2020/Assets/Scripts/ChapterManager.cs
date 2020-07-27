@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TempGameManager : MonoBehaviour
+public class ChapterManager : MonoBehaviour
 {
-    public static TempGameManager instance = null;
+    public static ChapterManager instance = null;
 
     [SerializeField] GameObject[] Panels;
+
+    CameraMovement cam;
 
     int index = 0;
     // Start is called before the first frame update
@@ -18,18 +20,13 @@ public class TempGameManager : MonoBehaviour
 
     void Start()
     {
-        foreach(GameObject p in Panels)
-        {
-            p.SetActive(false);
-        }
-
+        cam = Camera.main.gameObject.GetComponent<CameraMovement>();
         Panels[index].SetActive(true);
     }
 
     public void NextPanel()
     {
-        Panels[index].SetActive(false);
-        index += 1;
-        Panels[index].SetActive(true);
+        cam.MoveCameraToNextPanel(Panels[++index].transform.position);
     }
+
 }

@@ -14,7 +14,7 @@ public class PressAndHold : MonoBehaviour
     float timer;
 
     bool isHolding = false;
-
+    bool finished = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class PressAndHold : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isHolding)
+        if(isHolding && !finished)
         {
             if(RoundToOneDP(timer) % SpriteChangeTimer == 0)
             {
@@ -46,7 +46,8 @@ public class PressAndHold : MonoBehaviour
                 }
                 else
                 {
-                    TempGameManager.instance.NextPanel();
+                    finished = true;
+                    ChapterManager.instance.NextPanel();
                 }
             }
             timer += Time.deltaTime;

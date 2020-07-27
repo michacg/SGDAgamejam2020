@@ -6,7 +6,7 @@ public class PressToMove : MonoBehaviour
 {
     [SerializeField] GameObject MainCharacter;
     [SerializeField] List<GameObject> EndOfInteractionObjects;
-    [SerializeField] float TargetX;
+    [SerializeField] float xDistance;
     [SerializeField] float MaxYIncrease;
 
     bool isHolding = false;
@@ -31,9 +31,9 @@ public class PressToMove : MonoBehaviour
     {
         if(isHolding && !StopWalking)
         {
-            if(MainCharacter.transform.position.x < TargetX)
+            if(MainCharacter.transform.position.x  - OrigX < xDistance)
             {
-                MainCharacter.transform.Translate(Vector2.right * Time.deltaTime * (TargetX - OrigX) /2);
+                MainCharacter.transform.Translate(Vector2.right * Time.deltaTime * xDistance /2);
 
                 if(MainCharacter.transform.position.y > OrigY + MaxYIncrease || MainCharacter.transform.position.y < OrigY)
                 {
