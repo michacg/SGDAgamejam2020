@@ -6,6 +6,6 @@ public class ClickToProgress : MonoBehaviour
 {
     void OnMouseDown()
     {
-        TempGameManager.instance.NextPanel();
+        ChapterManager.instance.NextPanel();
     }
 }
